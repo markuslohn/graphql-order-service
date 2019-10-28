@@ -4,11 +4,11 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
- * Convertes the values for OrderMode between the database and java.
+ * Converts the values for OrderMode between the database and java.
  *
  * @author mlohn
  */
-@Converter(autoApply = true)
+@Converter
 public class OrderModeConverter implements AttributeConverter<OrderMode, String> {
 
   @Override

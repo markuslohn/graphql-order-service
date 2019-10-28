@@ -19,8 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -39,6 +39,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "ORDERS")
 @SequenceGenerator(name = "Orders_Id_Seq_Gen", sequenceName = "ORDERS_SEQ")
 public class Order implements Serializable {
 
@@ -55,8 +56,8 @@ public class Order implements Serializable {
   @Convert(converter = LocalDateTimeFlexibleAttributeConverter.class)
   private LocalDateTime orderDate;
 
-  @Size(max = 8)
   @Column(name = "ORDER_MODE")
+  @Convert(converter = OrderModeConverter.class)
   private OrderMode mode;
 
   @Enumerated

@@ -94,7 +94,7 @@ public class OrderManagementBean {
    * @return a List with Products
    */
   @GraphQLQuery(name = "products", description = "Lists available Products.")
-  public List findAvailableProducts() {
+  public List<Product> findAvailableProducts() {
     CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
     CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
     Root<Product> from = criteriaQuery.from(Product.class);
