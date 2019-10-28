@@ -2,6 +2,14 @@
 <weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.0/weblogic-web-app.xsd">
+    
+    <container-descriptor>
+        <prefer-application-packages>
+            <package-name>org.slf4j.*</package-name>
+            <package-name>com.fasterxml.jackson.*</package-name>
+        </prefer-application-packages>
+    </container-descriptor>
+
     <container-descriptor> 
         <prefer-web-inf-classes>true</prefer-web-inf-classes>
     </container-descriptor>
