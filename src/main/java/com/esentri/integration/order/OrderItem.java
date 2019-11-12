@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -34,6 +35,7 @@ public class OrderItem implements Serializable {
   @Column(name = "UNIT_PRICE")
   private Double unitPrice;
 
+  @Column(name = "QUANTITY")
   private Double quantity;
 
   @JoinColumn(
@@ -45,6 +47,6 @@ public class OrderItem implements Serializable {
   private Order order;
 
   @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
-  @OneToOne
+  @OneToOne(fetch = FetchType.EAGER)
   private Product product;
 }

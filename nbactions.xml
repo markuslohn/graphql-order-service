@@ -7,4 +7,14 @@
                 <goal>com.coveo:fmt-maven-plugin:format</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-deploy2weblogic</actionName>
+            <displayName>deploy2weblogic</displayName>
+            <goals>
+                <goal>pre-integration-test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>weblogic</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

@@ -1,5 +1,6 @@
 package com.esentri.integration.order;
 
+import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import java.util.List;
@@ -31,7 +32,8 @@ public class OrderManagementBean {
   @GraphQLMutation(
       name = "sendOrder",
       description = "Creates and starts processing of a new order.")
-  public Order sendOrder(Order newOrder) throws IllegalArgumentException {
+  public Order sendOrder(@GraphQLArgument(name = "newOrder") Order newOrder)
+      throws IllegalArgumentException {
     if (newOrder == null) {
       throw new IllegalArgumentException("Please provide a non-null order for sending.");
     }
@@ -39,6 +41,7 @@ public class OrderManagementBean {
     try {
       em.persist(newOrder);
       em.flush();
+      em.refresh(newOrder);
       return newOrder;
     } catch (Exception ex) {
       throw new RuntimeException(ex);
@@ -51,11 +54,14 @@ public class OrderManagementBean {
    * @return a List with Order objects.
    */
   @GraphQLQuery(name = "orders", description = "Lists available Order information.")
-  public List<Order> findOrders() {
+  public List<Order> findOrders(@GraphQLArgument(name = "orderId") final Long orderId) {
     CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
     CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
     Root<Order> from = criteriaQuery.from(Order.class);
     CriteriaQuery<Order> select = criteriaQuery.select(from);
+    if (orderId != null && orderId.longValue() > 0) {
+      criteriaQuery.where(criteriaBuilder.equal(from.get("id"), orderId));
+    }
     TypedQuery<Order> typedQuery = em.createQuery(select);
     select.orderBy(criteriaBuilder.asc(from.get("orderDate")));
     List<Order> orders = typedQuery.getResultList();
@@ -71,7 +77,8 @@ public class OrderManagementBean {
    * @throws IllegalArgumentException if orderId is invalid
    */
   @GraphQLQuery(name = "order", description = "Lists available Order information.")
-  public Order findOrderById(final Long orderId) throws IllegalArgumentException {
+  public Order findOrderById(@GraphQLArgument(name = "orderId") final Long orderId)
+      throws IllegalArgumentException {
     if (orderId == null || orderId.longValue() < 0) {
       throw new IllegalArgumentException(
           "No valid orderId provided for lookup. It has to be not null and > 0.");
