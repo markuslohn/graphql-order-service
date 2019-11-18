@@ -1,0 +1,15 @@
+{
+  __type(name: "Order") {
+    name
+    description
+    kind
+    ofType {
+      name
+      description
+    }
+    fields {
+      name
+      type
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  orders {
+    __typename
+    id
+    mode
+    total
+    orderDate
+    status
+    customer {
+      id
+      firstName
+      lastName
+    }
+    orderItems {
+      unitPrice
+      product {
+        name
+        minPrice
+        listPrice
+      }
+      order {
+        id
+      }
+    }
+
+  }
+}

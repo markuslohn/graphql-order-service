@@ -1,0 +1,26 @@
+{
+  A_Order: orders(orderId:2458) {
+    id
+    mode
+    total
+    orderDate
+    status
+    customer {
+      id
+      firstName
+      lastName
+    }
+  }
+  B_Order: orders(orderId:2397) {
+    id
+    mode
+    total
+    orderDate
+    status
+    customer {
+      id
+      firstName
+      lastName
+    }
+  }
+}

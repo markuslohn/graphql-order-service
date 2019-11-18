@@ -1,0 +1,30 @@
+fragment orderBasicFields on Order {
+  customer {
+    firstName
+    lastName
+  }
+  orderItems {
+    product {
+      name
+    }
+    unitPrice
+    quantity
+  }
+}
+
+{
+  A_Order: orders(orderId: 2458) {
+    id
+    mode
+    total
+    orderDate
+    status
+    ...orderBasicFields
+  }
+  B_Order: orders(orderId: 2397) {
+    id
+    orderDate
+    status
+    ...orderBasicFields
+  }
+}

@@ -1,0 +1,49 @@
+mutation CreateAndReviewOrder($newOrder: OrderInput!) {
+  sendOrder(newOrder: $newOrder) {
+    id
+    mode
+    total
+    status
+    orderDate
+    customer {
+      firstName
+      lastName
+    }
+    orderItems {
+      id {
+        lineId
+      }
+      product {
+        id
+      }
+      unitPrice
+      quantity
+    }
+  }
+}
+
+{
+  "newOrder": {
+    "id": "471110",
+    "mode": "DIRECT",
+    "status": "ENTERED",
+    "orderDate": "2019-11-11T10:15:30",
+    "customer": {
+      "id": "916",
+      "firstName": "Max",
+      "lastName": "Mustermann"
+    },
+    "orderItems": {
+      "id": {
+        "lineId": "1",
+        "orderId": "471110"
+      },
+      "quantity": 3.0,
+      "unitPrice": 19.95,
+      "product": {
+        "id": "3359"
+      },
+      "order": {"id": 471110}
+    }
+  }
+}

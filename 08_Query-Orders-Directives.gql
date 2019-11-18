@@ -1,0 +1,31 @@
+query findOrder($bestellNr: Long, $withOrderItems: Boolean!) {
+  orders (orderId: $bestellNr) {
+    id
+    mode
+    total
+    orderDate
+    status
+    customer {
+      id
+      firstName
+      lastName
+    }
+    orderItems @include(if: $withOrderItems) {
+      unitPrice
+      product {
+        name
+        minPrice
+        listPrice
+      }
+      order {
+        id
+      }
+    }
+
+  }
+}
+
+{
+  "bestellNr": 2458,
+  "withOrderItems": false
+}
