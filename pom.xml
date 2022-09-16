@@ -13,7 +13,7 @@
         <project.build.source>1.8</project.build.source>
         <oracle-jdbc.version>12.2.0.1</oracle-jdbc.version>
         <lombok-version>1.18.8</lombok-version>
-        <graphql-version>13.0</graphql-version>
+        <graphql-version>17.4</graphql-version>
         <graphql-javatools-version>5.2.4</graphql-javatools-version>
         <graphql-servlet-version>8.0.0</graphql-servlet-version>
         <graphql-spqr-version>0.10.0</graphql-spqr-version>
